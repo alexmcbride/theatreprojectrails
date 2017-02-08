@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# Create admin in Devise
+admin = User.create! :username => 'Admin', :email => 'admin@admin.com', :password => 'admin', :password_confirmation => 'admin'
+
+# admin = User.find 2
+
+# Add role using Rolify
+admin.add_role :admin
