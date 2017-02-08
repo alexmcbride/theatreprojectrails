@@ -9,6 +9,10 @@
 # Create admin in Devise
 admin = User.create! :username => 'Admin', :email => 'admin@admin.com', :password => 'admin', :password_confirmation => 'admin'
 
+# Confirm email
+admin.confirmed_at = DateTime.now
+admin.save
+
 # admin = User.find 2
 
 # Add role using Rolify

@@ -1,2 +1,2 @@
 @echo off
-sqlite3 -line db/development.sqlite3
+sqlite3 -line db/development2.sqlite3
