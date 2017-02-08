@@ -1,0 +1,18 @@
+/*
+  =require twitter-bootstrap-static/bootstrap
+
+  Static version of css will use Glyphicons sprites by default
+  =require twitter-bootstrap-static/sprites
+*/
+/* Rails scaffold style compatibility */
+
+.field_with_errors {
+    color: #a94442;
+    width: 100%;
+    background-color: #ebccd1;
+}
+
+.field_with_errors label {
+    margin-left: 18px;
+    margin-top: 4px;
+}

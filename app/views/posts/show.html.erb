@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @post.user.username %>
+</p>
+
+
+<p>
+  <strong>Title:</strong>
+  <%= @post.title %>
+</p>
+
+<p>
+  <strong>Published:</strong>
+  <%= @post.published %>
+</p>
+
+<p>
+  <strong>Is approved:</strong>
+  <%= @post.is_approved %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @post.content %>
+</p>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', category_posts_path(@post.category_id) %>
