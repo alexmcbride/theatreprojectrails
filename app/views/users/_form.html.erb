@@ -1,0 +1,22 @@
+<%= form_for(user) do |f| %>
+  <%= form_errors user %>
+
+  <div class="form-group">
+    <%= f.label :username %>
+    <%= f.text_field :username, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.text_field :email, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag :role %>
+    <%= select_tag :role, options_for_select(%w(Admin Staff Member), @role), class: 'form-control'  %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit class: 'btn btn-default' %>
+  </div>
+<% end %>

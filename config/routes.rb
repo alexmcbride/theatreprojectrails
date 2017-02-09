@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   resources :categories
   resources :posts
-  devise_for :users
+  resources :users
+
+  devise_for :users, path: 'auth'
   get 'home/index'
   get 'home/contact'
   get 'blog/:id', to: 'posts#index', as: 'category_posts'

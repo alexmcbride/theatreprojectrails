@@ -59,6 +59,7 @@
                 <% end %>
                 <% if current_user.has_role? :admin %>
                   <%= menu_item 'Manage Categories', categories_path %>
+                  <%= menu_item 'Manage Members', users_path %>
                 <% end %>
                 <%= drop_down_divider  %>
                 <%= menu_item 'Logout', destroy_user_session_path, method: :delete %>
