@@ -54,7 +54,9 @@
             <%= drop_down "Welcome, #{current_user.username}!" do %>
                 <%= menu_item 'Edit Profile', edit_user_registration_path %>
                 <%= drop_down_divider  %>
-                <%= menu_item 'New Blog Post', new_post_path %>
+                <% if current_user.has_role? :staff %>
+                    <%= menu_item 'New Blog Post', new_post_path %>
+                <% end %>
                 <% if current_user.has_role? :admin %>
                   <%= menu_item 'Manage Categories', categories_path %>
                 <% end %>

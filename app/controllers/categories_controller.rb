@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :user_has_admin_role
 
   # GET /categories
   # GET /categories.json
@@ -63,6 +64,12 @@ class CategoriesController < ApplicationController
   end
 
   private
+    def user_has_admin_role
+      if not current_user.has_role? :admin
+        raise Pundit::NotAuthorizedError
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_category
       @category = Category.find(params[:id])
