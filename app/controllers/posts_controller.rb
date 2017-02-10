@@ -6,6 +6,7 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @category = Category.find params[:id]
+    @posts = @category.posts.order(published: :desc)
   end
 
   # GET /posts/1
@@ -29,11 +30,12 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    authorize @post
     @post = Post.new(post_params)
     @post.published = DateTime.now
     @post.user = current_user
     @post.is_approved = true
+
+    authorize @post
 
     respond_to do |format|
       if @post.save
