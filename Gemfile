@@ -56,3 +56,6 @@ gem 'twitter-bootstrap-rails'
 gem 'devise'
 gem 'rolify'
 gem 'pundit'
+
+# Breadcrumbs
+gem 'gretel'

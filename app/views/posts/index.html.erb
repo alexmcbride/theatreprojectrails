@@ -1,17 +1,7 @@
-<h1><%= @category.name %></h1>
+<% breadcrumb :posts %>
 
 <% if @posts.each do |post| %>
-  <article>
-    <h2><%= post.title %></h2>
-    <p><%= post.content %></p>
-    <p class="post-meta">
-      Posted <%= distance_of_time_in_words_to_now(post.published) %> ago by <%= post.user.username %>
-      <% if user_can_edit post %>
-      | <%= link_to 'Edit', edit_post_path(post) %>
-      | <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %>
-      <% end %>
-    </p>
-  </article>
+  <%= render 'post', post: post %>
 <% end.empty? %>
   <p><em>There are no posts to display.</em></p>
 <% end %>

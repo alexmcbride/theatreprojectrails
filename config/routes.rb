@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   devise_for :users, path: 'auth'
   get 'home/index'
   get 'home/contact'
-  get 'blog/:id', to: 'posts#index', as: 'category_posts'
+  get 'blog/category/:id', to: 'posts#category', as: 'posts_category'
 
   root to: 'home#index'
 

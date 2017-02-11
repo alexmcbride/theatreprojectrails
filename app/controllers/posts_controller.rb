@@ -5,6 +5,10 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
+    @posts = Post.all.order(published: :desc)
+  end
+
+  def category
     @category = Category.find params[:id]
     @posts = @category.posts.order(published: :desc)
   end

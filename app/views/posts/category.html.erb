@@ -1,0 +1,7 @@
+<% breadcrumb :category, @category %>
+
+<% if @posts.each do |post| %>
+    <%= render 'post', post: post %>
+<% end.empty? %>
+    <p><em>There are no posts to display.</em></p>
+<% end %>

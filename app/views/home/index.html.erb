@@ -10,7 +10,7 @@
   <% if @categories %>
     <div class="list-group">
       <% @categories.each do |c| %>
-        <%= link_to c.name, category_posts_path(c), class: 'list-group-item' %>
+        <%= link_to c.name, posts_category_path(c), class: 'list-group-item' %>
       <% end %>
     </div>
   <% else %>

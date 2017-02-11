@@ -41,6 +41,7 @@
 <%= nav_bar brand: 'Local Theatre Company' do %>
     <%= menu_group do %>
         <%= menu_item 'Home', root_path %>
+        <%= menu_item 'Posts', posts_path %>
         <%= menu_item 'Contact', home_contact_path %>
 
         <% if !user_signed_in? %>
@@ -70,8 +71,11 @@
 
 <div class="container">
   <div class="row">
-      <%= bootstrap_flash %>
-      <%= yield %>
+    <%= breadcrumbs pretext: '', separator: ' &rsaquo; ' %>
+    <hr>
+
+    <%= bootstrap_flash %>
+    <%= yield %>
   </div>
 
   <footer>
