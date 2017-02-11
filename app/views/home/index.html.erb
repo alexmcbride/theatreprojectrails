@@ -1,14 +1,19 @@
-<h1>Welcome</h1>
-<p>Blah blah</p>
 
-<h1>Categories</h1>
+<div class="col-sm-6">
+  <h2>Welcome All.</h2>
+  <p>Blah blah</p>
+</div>
 
-<% if @categories %>
-  <ul>
-    <% @categories.each do |c| %>
-      <li><%= link_to c.name, category_posts_path(c) %></li>
-    <% end %>
-  </ul>
-<% else %>
-    <p><em>There are no categories to display</em></p>
-<% end %>
+<div class="col-sm-6">
+  <h2>Browse Categories.</h2>
+
+  <% if @categories %>
+    <div class="list-group">
+      <% @categories.each do |c| %>
+        <%= link_to c.name, category_posts_path(c), class: 'list-group-item' %>
+      <% end %>
+    </div>
+  <% else %>
+      <p><em>There are no categories to display</em></p>
+  <% end %>
+</div>

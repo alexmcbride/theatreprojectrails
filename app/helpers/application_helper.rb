@@ -18,7 +18,7 @@ module ApplicationHelper
     end
   end
 
-  def can_edit(post)
-    user_signed_in? and current_user.has_role? :can_edit, post
+  def user_can_edit(record)
+    user_signed_in? and current_user.has_role? :can_edit, record
   end
 end
