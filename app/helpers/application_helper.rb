@@ -19,6 +19,6 @@ module ApplicationHelper
   end
 
   def user_can_edit(record)
-    user_signed_in? and current_user.has_role? :can_edit, record
+    user_signed_in? and (current_user.has_role? :admin or current_user.has_role? :can_edit, record)
   end
 end

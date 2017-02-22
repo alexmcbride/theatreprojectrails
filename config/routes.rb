@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :categories
   resources :posts
   resources :users
+  resources :comments
 
   devise_for :users, path: 'auth'
   get 'home/index'

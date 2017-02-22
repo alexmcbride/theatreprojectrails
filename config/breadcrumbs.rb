@@ -3,7 +3,7 @@ crumb :root do
 end
 
 crumb :posts do
-  link 'Posts', posts_path
+  link 'Blog', posts_path
 end
 
 crumb :category do |category|

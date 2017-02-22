@@ -11,6 +11,7 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
 
   has_many :posts
+  has_many :comments
 
   def assign_default_role
     self.add_role(:member) if self.roles.blank?
