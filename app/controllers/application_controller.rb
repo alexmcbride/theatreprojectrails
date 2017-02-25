@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
     end
 
     def authorize_staff
-      unless user_signed_in? and current_user.has_role? :staff
+      unless current_user.has_role? :staff
         user_not_authorized
       end
     end
