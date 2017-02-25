@@ -11,6 +11,24 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :email, :password, :password_confirmation])
     end
 
+    def authorize_admin
+      unless current_user.has_role? :admin
+        user_not_authorized
+      end
+    end
+
+    def authorize_member
+      unless current_user.has_role? :member
+        user_not_authorized
+      end
+    end
+
+    def authorize_staff
+      unless user_signed_in? and current_user.has_role? :staff
+        user_not_authorized
+      end
+    end
+
   private
     def user_not_authorized
       flash[:alert] = "You are not authorized to perform this action."
