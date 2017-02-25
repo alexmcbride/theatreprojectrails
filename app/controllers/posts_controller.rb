@@ -19,10 +19,6 @@ class PostsController < ApplicationController
     @comment = Comment.new post_id: @post.id
   end
 
-  def comment
-
-  end
-
   # GET /posts/new
   def new
     @post = Post.new

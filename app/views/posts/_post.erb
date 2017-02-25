@@ -3,8 +3,8 @@
   <p><%= post.content %></p>
   <p class="post-meta">
     Posted
-    by <%= post.user.username %>
     <%= distance_of_time_in_words_to_now(post.published) %> ago
+    by <%= post.user.username %>
     in <%= link_to post.category.name, posts_category_path(post.category) %>
 
     <% if user_can_edit post %>

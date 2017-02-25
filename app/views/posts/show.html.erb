@@ -6,12 +6,13 @@
 <% if user_signed_in? %>
   <%= render 'comments/form', comment: @comment %>
 <% else %>
-  <div class="alert alert-warning">You must be logged in to post a comment</div>
+  <div class="alert alert-warning">You must be <%= link_to 'logged in', new_user_session_path %> to post a comment</div>
 <% end %>
 
-<% @post.comments.each do |comment| %>
-  <div class="row">
-    <p><%= comment.content %></p>
-    <p>Posted by <%= comment.user.username %> on <%= comment.posted %></p>
-  </div>
+<% @post.comments.order(posted: :desc).each do |comment| %>
+    <div class="comment">
+      <p><%= comment.content %></p>
+      <p class="comment-meta text-muted">Posted <%= distance_of_time_in_words_to_now comment.posted %> ago by <%= comment.user.username %></p>
+      <hr class="small">
+    </div>
 <% end %>
