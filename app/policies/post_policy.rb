@@ -22,7 +22,7 @@ class PostPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       if user.nil?
-        return scope.where('is_approved=1')
+        return scope.all_approved
       end
 
       if user.has_role? :admin
@@ -30,7 +30,7 @@ class PostPolicy < ApplicationPolicy
       end
 
       if user.has_role? :staff
-        scope.where('is_approved=1 OR user_id=?', user.id)
+        scope.all_user user.id
       end
     end
   end
