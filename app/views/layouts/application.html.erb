@@ -53,16 +53,16 @@
     <%= menu_group pull: :right do %>
         <% if user_signed_in? %>
             <%= drop_down "Welcome, #{current_user.username}!" do %>
-                <%= menu_item 'Edit Profile', edit_user_registration_path %>
                 <% if current_user.has_role? :staff %>
-                  <%= drop_down_divider  %>
-                  <%= menu_item 'New Blog Post', new_post_path %>
+                    <%= menu_item 'New Blog Post', new_post_path %>
+                    <%= drop_down_divider  %>
                 <% end %>
                 <% if current_user.has_role? :admin %>
-                  <%= drop_down_divider  %>
                   <%= menu_item 'Manage Categories', categories_path %>
                   <%= menu_item 'Manage Members', users_path %>
+                  <%= drop_down_divider  %>
                 <% end %>
+                <%= menu_item 'Edit Profile', edit_user_registration_path %>
                 <%= drop_down_divider  %>
                 <%= menu_item 'Logout', destroy_user_session_path, method: :delete %>
             <% end %>
