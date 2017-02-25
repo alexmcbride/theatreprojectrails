@@ -39,7 +39,7 @@ end
 
 crumb :edit_post do |post|
   link 'Edit Blog Post', edit_post_path(post)
-  parent :posts
+  parent :show, post
 end
 
 crumb :edit_comment do |comment|

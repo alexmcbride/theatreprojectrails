@@ -13,6 +13,6 @@ class Post < ApplicationRecord
   end
 
   def self.all_user(user_id)
-    all_approved.where('user_id=?', user_id)
+    where('approved=1 OR user_id=?', user_id)
   end
 end

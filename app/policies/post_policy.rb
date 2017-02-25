@@ -21,7 +21,7 @@ class PostPolicy < ApplicationPolicy
 
   class Scope < Scope
     def resolve
-      if user.nil? or user.has_role? :member
+      if user.nil?
         return scope.all_approved
       end
 
@@ -30,7 +30,11 @@ class PostPolicy < ApplicationPolicy
       end
 
       if user.has_role? :staff
-        scope.all_user user.id
+        return scope.all_user user.id
+      end
+
+      if user.has_role? :member
+        scope.app_approved
       end
     end
   end

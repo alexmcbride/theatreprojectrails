@@ -1,5 +1,11 @@
 <article>
-  <h2><%= link_to post.title, post_path(post) %></h2>
+  <h2><%= link_to post.title, post_path(post) %>
+
+    <% unless post.approved? %>
+      [Unapproved]
+    <% end %>
+
+  </h2>
   <p><%= post.content %></p>
   <p class="post-meta">
     Posted
