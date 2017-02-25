@@ -21,7 +21,17 @@ class PostPolicy < ApplicationPolicy
 
   class Scope < Scope
     def resolve
-      scope
+      if user.nil?
+        return scope.where('is_approved=1')
+      end
+
+      if user.has_role? :admin
+        return scope.all
+      end
+
+      if user.has_role? :staff
+        scope.where('is_approved=1 OR user_id=?', user.id)
+      end
     end
   end
 end

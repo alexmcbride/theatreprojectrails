@@ -7,4 +7,8 @@ class Post < ApplicationRecord
 
   validates :title, presence: true
   validates :content, presence: true
+
+  def self.all_approved
+    Post.all.where('is_approved=1')
+  end
 end
