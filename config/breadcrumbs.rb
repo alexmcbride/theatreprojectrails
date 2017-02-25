@@ -11,6 +11,11 @@ crumb :category do |category|
   parent :posts
 end
 
+crumb :show do |post|
+  link post.title, post_path(post)
+  parent :category, post.category
+end
+
 # crumb :project do |project|
 #   link project.name, project_path(project)
 #   parent :projects
