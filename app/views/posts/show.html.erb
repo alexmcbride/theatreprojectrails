@@ -5,18 +5,36 @@
 <h3>Leave Comments</h3>
 
 <% if user_signed_in? %>
-  <%= render 'comments/form', comment: @comment %>
+    <%= form_for(@comment) do |f| %>
+        <%= form_errors @comment %>
+
+        <%= form_for(@comment) do |f| %>
+            <%= f.hidden_field :post_id %>
+
+            <div class="form-group">
+              <%= f.text_area :content, class: 'form-control', rows: '5' %>
+            </div>
+
+            <div class="form-group">
+              <%= f.submit :class => 'btn btn-default' %>
+            </div>
+        <% end %>
+    <% end %>
+
 <% else %>
   <div class="alert alert-warning">You must be <%= link_to 'logged in', new_user_session_path %> to post a comment</div>
 <% end %>
 
-<% @post.comments.order(posted: :desc).each do |comment| %>
+<% policy_scope(@post.comments).order(posted: :desc).each do |comment| %>
     <div class="comment">
+      <% unless comment.approved? %>
+      <p class="text-muted">[Unapproved]</p>
+      <% end %>
       <p><%= comment.content %></p>
       <p class="comment-meta text-muted">
         Posted <%= distance_of_time_in_words_to_now comment.posted %> ago
         by <%= comment.user.username %>
-        <% if user_can_edit comment %>
+        <% if user_is_admin %>
           | <%= link_to 'Edit', edit_comment_path(comment) %>
           | <%= link_to 'Delete', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %>
         <% end %>

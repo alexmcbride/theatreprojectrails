@@ -4,6 +4,7 @@ class CreateComments < ActiveRecord::Migration[5.0]
       t.integer :user_id
       t.integer :post_id
       t.datetime :posted
+      t.boolean :approved
       t.text :content
 
       t.timestamps

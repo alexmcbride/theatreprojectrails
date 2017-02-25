@@ -16,6 +16,13 @@
     <%= f.text_area :content, class: 'form-control', rows: 15 %>
   </div>
 
+  <% if current_user.has_role? :admin %>
+        <div class="form-group">
+          <%= f.label :approved %>
+          <%= f.check_box :approved, class: 'form-control' %>
+        </div>
+  <% end %>
+
   <div class="form-group">
     <%= f.submit class: 'btn btn-default' %>
   </div>

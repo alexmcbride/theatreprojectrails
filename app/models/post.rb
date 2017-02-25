@@ -9,10 +9,10 @@ class Post < ApplicationRecord
   validates :content, presence: true
 
   def self.all_approved
-    Post.all.where('is_approved=1')
+    where(approved: true)
   end
 
   def self.all_user(user_id)
-    Post.where('is_approved=1 OR user_id=?', user_id)
+    all_approved.where('user_id=?', user_id)
   end
 end
