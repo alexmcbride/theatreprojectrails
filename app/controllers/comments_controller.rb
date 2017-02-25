@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_admin, except: [:create]
+  before_action :authorize_admin, only: [:index, :show]
   before_action :authorize_member, only: [:create]
 
   # GET /comments
@@ -16,6 +16,7 @@ class CommentsController < ApplicationController
 
   # GET /comments/1/edit
   def edit
+    authorize @comment
   end
 
   # POST /comments
@@ -28,7 +29,10 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
+
+        # User can edit this comment.
         current_user.add_role :can_edit, @comment
+
         format.html { redirect_to post_path(id: @comment.post_id), notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }
       else
@@ -43,6 +47,7 @@ class CommentsController < ApplicationController
   # PATCH/PUT /comments/1
   # PATCH/PUT /comments/1.json
   def update
+    authorize @comment
     respond_to do |format|
       if @comment.update(comment_params)
         format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
@@ -57,9 +62,10 @@ class CommentsController < ApplicationController
   # DELETE /comments/1
   # DELETE /comments/1.json
   def destroy
+    authorize @comment
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to comments_url, notice: 'Comment was successfully destroyed.' }
+      format.html { redirect_to @comment.post, notice: 'Comment was successfully deleted.' }
       format.json { head :no_content }
     end
   end

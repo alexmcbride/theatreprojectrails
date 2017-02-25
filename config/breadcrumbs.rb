@@ -26,6 +26,11 @@ crumb :edit_post do |post|
   parent :posts
 end
 
+crumb :edit_comment do |comment|
+  link 'Edit Comment', post_path(comment.post)
+  parent :show, comment.post
+end
+
 # crumb :project do |project|
 #   link project.name, project_path(project)
 #   parent :projects
