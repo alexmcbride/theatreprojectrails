@@ -2,6 +2,22 @@ crumb :root do
   link 'Home', root_path
 end
 
+crumb :contact do
+  link 'Contact', home_contact_path
+end
+
+crumb :register do
+  link 'Sign Up', new_user_registration_path
+end
+
+crumb :login do
+  link 'Login', new_user_session_path
+end
+
+crumb :edit_profile do
+  link 'Edit Profile', edit_user_registration_path
+end
+
 crumb :posts do
   link 'Blog', posts_path
 end
