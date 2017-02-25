@@ -13,7 +13,14 @@
 <% @post.comments.order(posted: :desc).each do |comment| %>
     <div class="comment">
       <p><%= comment.content %></p>
-      <p class="comment-meta text-muted">Posted <%= distance_of_time_in_words_to_now comment.posted %> ago by <%= comment.user.username %></p>
+      <p class="comment-meta text-muted">
+        Posted <%= distance_of_time_in_words_to_now comment.posted %> ago
+        by <%= comment.user.username %>
+        <% if user_can_edit comment %>
+          | <%= link_to 'Edit', edit_comment_path(comment) %>
+          | <%= link_to 'Delete', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+      </p>
       <hr class="small">
     </div>
 <% end %>

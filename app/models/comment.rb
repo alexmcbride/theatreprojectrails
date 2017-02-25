@@ -1,4 +1,6 @@
 class Comment < ApplicationRecord
+  resourcify
+
   belongs_to :post
   belongs_to :user
 

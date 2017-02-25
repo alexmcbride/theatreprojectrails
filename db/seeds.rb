@@ -37,3 +37,5 @@ staff.add_role :can_edit, post
 post = Post.create! :category => news, :user => staff, :title => 'Nam vulputate sollicitudin purus', :published => DateTime.now, :content => 'Nam vulputate sollicitudin purus. Cras purus ligula, condimentum ut feugiat at, imperdiet id lorem. Maecenas mollis tincidunt ipsum. Praesent feugiat diam in mi tempor, a lacinia dui consectetur. Maecenas felis ex, cursus vitae efficitur eu, dignissim fringilla mauris. Donec ligula est, auctor at facilisis at, mollis gravida ipsum. Ut non ex pellentesque, auctor arcu quis, pharetra purus. Sed non leo leo. Cras iaculis euismod mi, eu fermentum magna accumsan nec. Phasellus dictum rutrum lacus. Proin euismod eu turpis non bibendum. Quisque bibendum risus et imperdiet vulputate. Praesent cursus nibh id volutpat ullamcorper.'
 staff.add_role :can_edit, post
 
+# comment = Comment.create! :user => member, :post => post, :content => 'this is a seed comment', :posted => DateTime.now
+# member.add_role :can_edit, comment

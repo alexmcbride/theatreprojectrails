@@ -16,6 +16,16 @@ crumb :show do |post|
   parent :category, post.category
 end
 
+crumb :new_post do |post|
+  link 'New Blog Post', new_post_path
+  parent :posts
+end
+
+crumb :edit_post do |post|
+  link 'Edit Blog Post', edit_post_path(post)
+  parent :posts
+end
+
 # crumb :project do |project|
 #   link project.name, project_path(project)
 #   parent :projects
