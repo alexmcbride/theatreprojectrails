@@ -34,7 +34,7 @@ class PostPolicy < ApplicationPolicy
       end
 
       if user.has_role? :member
-        scope.app_approved
+        scope.all_approved
       end
     end
   end
