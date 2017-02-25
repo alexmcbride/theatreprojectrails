@@ -12,11 +12,6 @@ class CommentsController < ApplicationController
   def show
   end
 
-  # GET /comments/new
-  def new
-    @comment = Comment.new
-  end
-
   # GET /comments/1/edit
   def edit
   end
@@ -25,6 +20,7 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = Comment.new(comment_params)
+    authorize @comment
     @comment.user_id = current_user.id
     @comment.posted = DateTime.now
 
@@ -33,7 +29,9 @@ class CommentsController < ApplicationController
         format.html { redirect_to post_path(id: @comment.post_id), notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }
       else
-        format.html { render :new }
+        # Form errors, redisplay
+        @post = Post.find(@comment.post_id)
+        format.html { render 'posts/show' }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
