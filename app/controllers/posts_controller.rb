@@ -4,12 +4,14 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = policy_scope(Post.all).order(published: :desc)
+    posts = Post.includes(:category, :user)
+    @posts = policy_scope(posts).order(published: :desc)
   end
 
   def category
     @category = Category.find params[:id]
-    @posts = policy_scope(@category.posts).order(published: :desc)
+    posts = @category.posts.includes(:category, :user)
+    @posts = policy_scope(posts).order(published: :desc)
   end
 
   # GET /posts/1
@@ -35,11 +37,10 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
+    authorize @post
     @post.published = DateTime.now
     @post.user = current_user
-    @post.is_approved = false
-
-    authorize @post
+    @post.approved = false
 
     respond_to do |format|
       if @post.save
@@ -60,7 +61,7 @@ class PostsController < ApplicationController
   def update
     authorize @post
     respond_to do |format|
-      if @post.update(post_params)
+      if  @post.update(post_params)
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else
