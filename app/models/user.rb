@@ -24,11 +24,17 @@ class User < ApplicationRecord
   end
 
   def set_role(role)
+    clear_roles
+
     if role == 'Admin'
       self.add_role :admin
       self.add_role :staff
+      self.add_role :member
     elsif role == 'Staff'
       self.add_role :staff
+      self.add_role :member
+    elsif role == 'Member'
+      self.add_role :member
     end
   end
 

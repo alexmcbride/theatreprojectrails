@@ -51,7 +51,6 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update(user_params)
-        @user.clear_roles
         @user.set_role @role
 
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
