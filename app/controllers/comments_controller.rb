@@ -29,10 +29,6 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-
-        # User can edit this comment.
-        current_user.add_role :can_edit, @comment
-
         format.html { redirect_to post_path(id: @comment.post_id), notice: 'Your comment will need to be approved before it is displayed' }
         format.json { render :show, status: :created, location: @comment }
       else

@@ -4,25 +4,26 @@
 
 <h3>Leave Comments</h3>
 
-<% if user_signed_in? %>
-    <%= form_for(@comment) do |f| %>
-        <%= form_errors @comment %>
-
-        <%= form_for(@comment) do |f| %>
-            <%= f.hidden_field :post_id %>
-
-            <div class="form-group">
-              <%= f.text_area :content, class: 'form-control', rows: '5' %>
-            </div>
-
-            <div class="form-group">
-              <%= f.submit :class => 'btn btn-default' %>
-            </div>
-        <% end %>
-    <% end %>
-
-<% else %>
+<% if !user_signed_in? %>
   <div class="alert alert-warning">You must be <%= link_to 'logged in', new_user_session_path %> to post a comment</div>
+<% elsif current_user.suspended? %>
+  <div class="alert alert-warning">You are suspended from commenting</div>
+<% else %>
+  <%= form_for(@comment) do |f| %>
+      <%= form_errors @comment %>
+
+      <%= form_for(@comment) do |f| %>
+          <%= f.hidden_field :post_id %>
+
+          <div class="form-group">
+            <%= f.text_area :content, class: 'form-control', rows: '5' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.submit :class => 'btn btn-default' %>
+          </div>
+      <% end %>
+  <% end %>
 <% end %>
 
 <% policy_scope(@post.comments).order(posted: :desc).each do |comment| %>

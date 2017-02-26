@@ -1,18 +1,18 @@
 class CommentPolicy < ApplicationPolicy
   def create?
-    @user.has_role? :member
+    not @user.suspended? and @user.has_role? :member
   end
 
   def edit?
-    @user.has_role? :admin# or @user.has_role? :can_edit, @record
+    @user.has_role? :admin
   end
 
   def update?
-    @user.has_role? :admin# or @user.has_role? :can_edit, @record
+    @user.has_role? :admin
   end
 
   def destroy?
-    @user.has_role? :admin# or @user.has_role? :can_edit, @record
+    @user.has_role? :admin
   end
 
   class Scope < Scope
