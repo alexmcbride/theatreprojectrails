@@ -37,7 +37,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.published = DateTime.now
     @post.user = current_user
-    @post.is_approved = true
+    @post.is_approved = false
 
     authorize @post
 
